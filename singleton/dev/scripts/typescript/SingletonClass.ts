@@ -6,7 +6,7 @@ class SingletonClass {
 
     constructor() { //Construtor
         if(SingletonClass._instance){
-            return SingletonClass._instance;
+           return SingletonClass._instance;
         }
         SingletonClass._instance = this;
     }

@@ -2,7 +2,7 @@ var SingletonClass = (function () { // função que retorna SingletonClass
     function SingletonClass() { 
         this._score = 0; //seta valor inicial 0
         if (SingletonClass._instance) {
-            SingletonClass._instance = this;
+           return SingletonClass.getInstance();
             }
        
         SingletonClass._instance = this;
