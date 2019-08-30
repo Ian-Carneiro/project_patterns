@@ -1,70 +1,56 @@
-abstract class Escrever {
-    abstract chat:Chat;
-    abstract update():void;
+"use strict";
+class Escrever {
 }
-interface Observer{
-    Update():void;
-}
-class EscreverWeb extends Escrever{
-    //mensagem:string;
-    chat:Chat;
-    constructor(/*mensagem:string, */chat:Chat){
+class EscreverWeb extends Escrever {
+    constructor(/*mensagem:string, */ chat) {
         super();
         //this.mensagem = mensagem;
         this.chat = chat;
-        
     }
-    update():void{
+    update() {
         //Coloco para que o chat web seja atualizado
     }
 }
-class EscreverMobile extends Escrever{
-    //mensagem:string;
-    chat:Chat;
-    constructor(/*mensagem:string, */chat:Chat){
+class EscreverMobile extends Escrever {
+    constructor(/*mensagem:string, */ chat) {
         super();
         //this.mensagem = mensagem;
         this.chat = chat;
-        
     }
-    update():void{
+    update() {
         //Coloco para que o chat mobile seja atualizado
     }
 }
-class Chat{
-    mensagens: string[] = [];
-    list:Escrever[] =[];
-
-    add(escrever: Escrever) {
+class Chat {
+    constructor() {
+        this.mensagens = [];
+        this.list = [];
+    }
+    add(escrever) {
         this.list.push(escrever);
     }
-    remove(escrever: Escrever) {
-        
+    remove(escrever) {
     }
-    notify(){ 
+    notify() {
         this.list.forEach(function (escrever) {
             escrever.update();
-        }); 
+        });
     }
-    getMensagens(){
+    getMensagens() {
         for (let entry of this.mensagens) {
             console.log(entry);
         }
     }
-    addMensagens(mensagem: string){
+    addMensagens(mensagem) {
         this.mensagens.push(mensagem);
         this.notify();
     }
-
-
 }
-
 let chat = new Chat();
 let mensagem1 = 'oi';
 let mensagem2 = 'ola';
 let conversa1 = new EscreverWeb(chat);
 let conversa2 = new EscreverMobile(chat);
-
 chat.add(conversa1);
 chat.add(conversa2);
 //conversa1.update();
@@ -73,3 +59,4 @@ chat.addMensagens(mensagem2);
 //chat.notify();
 //conversa2.update();
 chat.getMensagens();
+//# sourceMappingURL=home.js.map

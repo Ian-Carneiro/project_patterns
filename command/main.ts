@@ -1,14 +1,15 @@
+// import { Command } from './Command';
 
 
 // A interface Command declara um método para executar um comando.
 
-export interface Command{
+interface Command{
     execute():void;
 }
 
 // As classes Receiver contêm as lógicas de negócio, sabem como realizar todos os tipos de operações da aplicação
 
-export class AppNotas{
+class AppNotas{
     open():void{
         console.log('App Notas abriu');
     }
@@ -19,7 +20,7 @@ export class AppNotas{
 
 
 //  Os comandos implementam separadamente suas operações
-export class AbreAppNotas implements Command{
+class AbreAppNotas implements Command{
     
     private appnotas:AppNotas;
     constructor(a:AppNotas){
@@ -32,7 +33,7 @@ export class AbreAppNotas implements Command{
 
 
 
-export class FechaAppNotas implements Command{
+class FechaAppNotas implements Command{
     
     private appnotas:AppNotas;
     constructor(a:AppNotas){
@@ -43,14 +44,26 @@ export class FechaAppNotas implements Command{
     }
 }
 
+class Celular{
+    public interagir(command:Command){
+        command.execute();
+    }
+}
+
 
 // O código do cliente pode parametrizar um invocador com qualquer comando
-
-let commandList:Command[] =[];
+let celular: Celular = new Celular();
 let appNotas = new AppNotas();
-commandList.push(new AbreAppNotas(appNotas));
-commandList.push(new FechaAppNotas(appNotas));
+let abre: Command = new AbreAppNotas(appNotas);
+let fecha: Command = new FechaAppNotas(appNotas);
+celular.interagir(abre);
+celular.interagir(fecha);
 
-commandList.forEach( (command, index) => {
-    command.execute();
-  });
+// let commandList:Command[] =[];
+
+// commandList.push(new AbreAppNotas(appNotas));
+// commandList.push(new FechaAppNotas(appNotas));
+
+// commandList.forEach( (command, index) => {
+//     command.execute();
+//   });

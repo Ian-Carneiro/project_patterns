@@ -41,7 +41,7 @@ class AtaqueEspecial implements Ataque{
     public valorDano(oponente:Oponente, ataqueScore:number):number{
         let dano:number = (ataqueScore*3)-oponente.getDefesa();//ataque 3 vezes mais forte
         if(oponente.getEsquiva()>=Math.random()*100 || dano<0){
-            return 0
+            return 0;
         }
         return dano;
     }
